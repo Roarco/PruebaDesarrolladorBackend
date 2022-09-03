@@ -67,3 +67,7 @@ INSERT INTO products (name, price, description) VALUES ('Agua sin gas', 2000, '5
 INSERT INTO products (name, price, description) VALUES ('Agua con gas', 2500, '500 ml');
 INSERT INTO products (name, price, description) VALUES ('Docena de huevos', 1800, 'ministro de haciendo aprueba');
 
+--insertando roles
+INSERT INTO roles (name) VALUES ('admin');
+INSERT INTO roles (name) VALUES ('employee');
+INSERT INTO roles (name) VALUES ('everyone');
