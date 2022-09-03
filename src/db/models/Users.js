@@ -14,7 +14,7 @@ const UserSchema = {
         type: DataTypes.STRING(50),
         allowNull: false
     },
-    lasName: {
+    lastName: {
         type: DataTypes.STRING(50),
         flied: 'last_name',
         allowNull: false

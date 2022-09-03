@@ -1,6 +1,7 @@
 const express = require('express');
 const productsService = require('../services/Products');
 const validatorHandler = require('../middlewares/validator');
+const { ckeckRoles } = require('../middlewares/auth');
 const { createProductSchema } = require('../schema/Products');
 
 const router = express.Router();
@@ -20,6 +21,7 @@ router.get('/', async (req, res, next) => {
 //Post
 
 router.post('/',
+ckeckRoles('admin'),
 validatorHandler(createProductSchema, 'body'),
 async (req, res, next) => {
     try {

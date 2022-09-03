@@ -1,15 +1,9 @@
 const boom = require('@hapi/boom');
+const rolesService = require('../services/Roles');
 
 const config = require('../config/config');
 
-function checkApiKey(req, res, next) {
-  const apiKey = req.headers['api'];
-  if (apiKey === config.apiKey) {
-    next();
-  }else {
-    next(boom.unauthorized());
-  }
-}
+const service = new rolesService();
 
 function checkAdmin(req, res, next) {
   const user = req.user;
@@ -20,10 +14,11 @@ function checkAdmin(req, res, next) {
   }
 }
 
+
 function ckeckRoles (...roles) {
   return function (req, res, next) {
-    const user = req.user;
-    if (roles.includes(user.role)) {
+    const role = req.headers.auth;
+    if (roles.includes(role)) {
       next();
     }else {
       next(boom.unauthorized());
@@ -32,7 +27,6 @@ function ckeckRoles (...roles) {
 }
 
 module.exports =  {
-  checkApiKey,
   checkAdmin,
   ckeckRoles
 };

@@ -70,4 +70,4 @@ INSERT INTO products (name, price, description) VALUES ('Docena de huevos', 1800
 --insertando roles
 INSERT INTO roles (name) VALUES ('admin');
 INSERT INTO roles (name) VALUES ('employee');
-INSERT INTO roles (name) VALUES ('everyone');
+
