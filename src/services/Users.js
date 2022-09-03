@@ -18,7 +18,6 @@ class UsersService {
 
   // Delete a user
   async deleteUser(id) {
-    console.log(id);
     const user = await models.User.destroy({
       where: {
         id,
