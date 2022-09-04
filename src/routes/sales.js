@@ -24,6 +24,21 @@ async (req, res, next) => {
     try {
         const total = await service.getTotalSalesByDay(req.query);
         res.json({
+            message: 'Total de ventas por dia',
+            total,
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/valorToralVentasMes',
+ckeckRoles('admin'),
+async (req, res, next) => {
+    try {
+        const total = await service.getTotalSalesByMonth(req.query);
+        res.json({
+            message: 'Total de ventas por mes',
             total
         });
     } catch (error) {

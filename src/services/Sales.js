@@ -68,6 +68,28 @@ class SalesService {
     }
     return total;
   }
+
+  // get total sales by month
+  async getTotalSalesByMonth(query) {
+    const { month } = query;
+    const sales = await models.Sale.findAll({
+      include: ["user", "product"],
+    });
+    const salesMonth = [];
+
+    for (const sale of sales) {
+      const formatDate = new Date(sale.dataValues.saleAt).toLocaleDateString()
+      const monthSale = formatDate.split('/')[0];
+      if (monthSale === month) {
+        salesMonth.push(sale);
+      }
+    }
+    let total = 0;
+    for (const sale of salesMonth) {
+      total += sale.dataValues.product.dataValues.price * sale.dataValues.qty;
+    }
+    return total;
+  }
 }
 
 module.exports = SalesService;
