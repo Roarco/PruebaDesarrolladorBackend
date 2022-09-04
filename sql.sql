@@ -37,10 +37,10 @@ CREATE TABLE roles (
 CREATE TABLE users (
     id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
     name character varying(50) NOT NULL,
-    last_name character varying(50) NOT NULL,
+    "lastName" character varying(50) NOT NULL,
     document character varying(50) NOT NULL,
-    roles_id uuid NOT NULL,
-    CONSTRAINT fk_roles FOREIGN KEY (roles_id) REFERENCES roles (id)
+    "rolesId" uuid NOT NULL,
+    CONSTRAINT fk_roles FOREIGN KEY ("rolesId") REFERENCES roles (id)
 );
 
 -- creamos la tabla sales con los siguientes campos
@@ -53,11 +53,11 @@ CREATE TABLE users (
 CREATE TABLE sales (
     id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
     qty integer NOT NULL,
-    sale_at date NOT NULL,
-    products_id uuid NOT NULL,
-    users_id uuid NOT NULL,
-    CONSTRAINT fk_products FOREIGN KEY (products_id) REFERENCES products (id),
-    CONSTRAINT fk_users FOREIGN KEY (users_id) REFERENCES users (id)
+    "saleAt" date NOT NULL,
+    "productsId" uuid NOT NULL,
+    "usersId" uuid NOT NULL,
+    CONSTRAINT fk_products FOREIGN KEY ("productsId") REFERENCES products (id),
+    CONSTRAINT fk_users FOREIGN KEY ("usersId") REFERENCES users (id)
 );
 
 --insertamos los datos en la tabla products
