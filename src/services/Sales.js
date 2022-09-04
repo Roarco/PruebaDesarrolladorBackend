@@ -47,6 +47,27 @@ class SalesService {
     }
     return sale;
   }
+
+  // get total sales by day
+  async getTotalSalesByDay(query) {
+    const { date } = query;
+    const sales = await models.Sale.findAll({
+      include: ["user", "product"],
+    });
+    const salesDate = [];
+
+    for (const sale of sales) {
+      const formatDate = new Date(sale.dataValues.saleAt).toLocaleDateString()
+      if (formatDate === date) {
+        salesDate.push(sale);
+      }
+    }
+    let total = 0;
+    for (const sale of salesDate) {
+      total += sale.dataValues.product.dataValues.price * sale.dataValues.qty;
+    }
+    return total;
+  }
 }
 
 module.exports = SalesService;

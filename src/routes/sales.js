@@ -18,6 +18,19 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+router.get('/valorTotalVentasDia',
+ckeckRoles('admin'),
+async (req, res, next) => {
+    try {
+        const total = await service.getTotalSalesByDay(req.query);
+        res.json({
+            total
+        });
+    } catch (error) {
+        next(error);
+    }
+});
+
 //Post
 
 router.post('/',
